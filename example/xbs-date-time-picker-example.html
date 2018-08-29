@@ -1,0 +1,83 @@
+<DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="../theme/index.css" />
+</head>
+<body>
+    <div id="app">
+    <template>
+      <div class="block">
+        <span>范围</span>
+        <el-date-picker
+          v-model="value5"
+          type="datetimerange"
+          :picker-options="pickerOptions2" 
+          range-separator="至"
+          start-placeholder="开始时间:yyyy-MM-dd hh:mm:ss"
+          end-placeholder="结束时间:yyyy-MM-dd hh:mm:ss"
+          align="right"
+          :unlink-panels="true"
+          align="left"
+          >
+        </el-date-picker>
+      </div>
+      <div class="block">
+        <span class="demonstration">默认</span>
+        <el-date-picker
+          v-model="value1"
+          type="datetime"
+          placeholder="选择日期时间">
+        </el-date-picker>
+      </div>
+    </template>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.3.2/dist/vue.min.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+var Main = {
+    data() {
+      return {
+        value1: '',
+        pickerOptions2: {
+          shortcuts: [{
+            text: '最近一周',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+              picker.$emit('pick', [start, end]);
+            }
+          }, {
+            text: '最近一个月',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+              picker.$emit('pick', [start, end]);
+            }
+          }, {
+            text: '最近三个月',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+              picker.$emit('pick', [start, end]);
+            }
+          }]
+        },
+        value4: [new Date(2000, 10, 10, 10, 10), new Date(2000, 10, 11, 10, 10)],
+        value5: ''
+      };
+    }
+  };
+var Ctor = Vue.extend(Main)
+new Ctor().$mount('#app')
+</script>
+</html>
+
+

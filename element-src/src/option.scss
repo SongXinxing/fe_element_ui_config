@@ -1,0 +1,41 @@
+@import "mixins/mixins";
+@import "common/var";
+
+@include b(select-dropdown) {
+  @include e(item) {
+    font-size: $--select-group-font-size;
+    padding: 0 12px;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: $--select-option-color;
+    height: $--select-option-height;
+    line-height: $--select-option-height;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    @include when(disabled) {
+      color: $--select-option-disabled-color;
+      cursor: not-allowed;
+
+      &:hover {
+        background-color: $--color-white;
+      }
+    }
+
+    &.hover, &:hover {
+      background-color: $--select-option-hover-background;
+      color: $--color-input-focus;
+    }
+
+    &.selected {
+      color: $--select-option-selected;
+      font-weight: bold;
+    }
+
+    & span {
+      line-height: 34px !important;
+    }
+  }
+}

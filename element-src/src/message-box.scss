@@ -1,0 +1,184 @@
+@import "mixins/mixins";
+@import "common/var";
+@import "common/popup";
+@import "mixins/_dialog";
+@import "button";
+@import "input";
+
+@include b(message-box) {
+  display: inline-block;
+  @include dialog;
+  vertical-align: middle;
+  overflow: hidden;
+  backface-visibility: hidden;
+
+  @include e(wrapper) {
+    @include dialog-wrapper;
+    text-align: center;
+
+    &::after {
+      content: "";
+      display: inline-block;
+      height: 100%;
+      width: 0;
+      vertical-align: middle;
+    }
+  }
+
+  @include e(header) {
+    @include dialog-header;
+    min-height: $--dialog-header-title-min-height;
+    line-height: $--dialog-header-title-line-height;
+    background-color: transparent;
+  }
+
+  @include e(title) {
+    display: none;
+    @include dialog-title;
+  }
+
+  @include e(headerbtn) {
+    background: $--color-white;
+    @include dialog-headerbtn;
+  }
+
+  @include e(content) {
+    position: relative;
+    padding: $--msgbox-content-padding;
+    color: $--color-text-regular;
+    font-size: $--msgbox-content-font-size;
+    max-width: $--dialog-content-max-width;
+    min-height: $--dialog-content-min-height;
+    text-align: center;
+  }
+
+  @include e(input) {
+    padding-top: 15px;
+
+    & input.invalid {
+      border-color: $--color-warning;
+      &:focus {
+        border-color: $--color-warning;
+      }
+    }
+  }
+
+  @include e(status) {
+    font-size: 68px !important;
+    margin-bottom: 26px;
+
+    &::before {
+      // 防止图标切割
+      padding-left: 1px;
+    }
+
+    &.el-icon-success {
+      color: $--msgbox-success-color;
+    }
+
+    &.el-icon-info {
+      color: $--msgbox-info-color;
+    }
+
+    &.el-icon-warning {
+      color: $--msgbox-warning-color;
+    }
+
+    &.el-icon-error {
+      color: $--msgbox-danger-color;
+    }
+  }
+
+  @include e(message) {
+    margin: 0;
+
+    & p {
+      margin: 0;
+      line-height: 24px;
+      word-break: break-all;
+    }
+  }
+
+  @include e(errormsg) {
+    color: $--color-warning;
+    font-size: $--msgbox-error-font-size;
+    min-height: 18px;
+    margin-top: 2px;
+  }
+
+  @include e(btns) {
+    @include dialog-footer;
+    & button {
+      @include dialog-footer-btn;
+    }
+  }
+
+  @include e(btns-reverse) {
+    flex-direction: row-reverse;
+  }
+
+  // centerAlign 布局
+  @include m(center) {
+    padding-bottom: 30px;
+
+    @include e(header) {
+      padding-top: 30px;
+    }
+
+    @include e(title) {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @include e(status) {
+      position: relative;
+      top: auto;
+      padding-right: 5px;
+      text-align: center;
+      transform: translateY(-1px);
+    }
+
+    @include e(message) {
+      margin-left: 0;
+    }
+
+    @include e((btns, content)) {
+      text-align: center;
+    }
+
+    @include e(content) {
+    }
+  }
+}
+
+.msgbox-fade-enter-active {
+  animation: msgbox-fade-in .3s;
+}
+
+.msgbox-fade-leave-active {
+  animation: msgbox-fade-out .3s;
+}
+
+@keyframes msgbox-fade-in {
+  0% {
+    transform: translate3d(0, -20px, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes msgbox-fade-out {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, -20px, 0);
+    opacity: 0;
+  }
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="../theme/index.css" />
+</head>
+<body>
+    <div id="app">
+      <el-row>
+        <el-button>默认按钮</el-button>
+        <el-button type="primary">主要按钮</el-button>
+        <el-button type="success">成功按钮</el-button>
+        <el-button type="info">信息按钮</el-button>
+        <el-button type="warning">警告按钮</el-button>
+        <el-button type="danger">危险按钮</el-button>
+      </el-row>
+      
+      <el-row>
+        <el-button plain>朴素按钮</el-button>
+        <el-button type="primary" plain>主要按钮</el-button>
+        <el-button type="success" plain>成功按钮</el-button>
+        <el-button type="info" plain>信息按钮</el-button>
+        <el-button type="warning" plain>警告按钮</el-button>
+        <el-button type="danger" plain>危险按钮</el-button>
+      </el-row>
+      
+      <el-row>
+        <el-button round>圆角按钮</el-button>
+        <el-button type="primary" round>主要按钮</el-button>
+        <el-button type="success" round>成功按钮</el-button>
+        <el-button type="info" round>信息按钮</el-button>
+        <el-button type="warning" round>警告按钮</el-button>
+        <el-button type="danger" round>危险按钮</el-button>
+      </el-row>
+      
+      <el-row>
+        <el-button icon="el-icon-search" circle></el-button>
+        <el-button type="primary" icon="el-icon-edit" circle></el-button>
+        <el-button type="success" icon="el-icon-check" circle></el-button>
+        <el-button type="info" icon="el-icon-message" circle></el-button>
+        <el-button type="warning" icon="el-icon-star-off" circle></el-button>
+        <el-button type="danger" icon="el-icon-delete" circle></el-button>
+      </el-row>
+
+      <el-checkbox v-model="checked">备选项</el-checkbox>
+      <el-checkbox v-model="checked" disabled>备选项1</el-checkbox>
+      <el-checkbox v-model="checked" disabled>备选项</el-checkbox>
+      <el-radio v-model="radio" label="1">备选项</el-radio>
+      <el-radio v-model="radio" label="2">备选项</el-radio>
+
+      <el-pagination
+        :page-size="20"
+        :pager-count="11"
+        layout="prev, pager, next"
+        :total="1000">
+      </el-pagination>
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        :total="1000">
+      </el-pagination>
+
+      <el-pagination
+        :current-page="1"
+        :page-sizes="[100, 200, 300, 400]"
+        :page-size="100"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="400">
+      </el-pagination>
+
+      <el-row v-loading="loading">
+        <el-col :span="12"><div class="grid-content bg-purple"></div></el-col>
+        <el-col :span="12"><div class="grid-content bg-purple-light"></div></el-col>
+      </el-row>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.3.2/dist/vue.min.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    checked: 0,
+    radio: 0,
+    tableData: [{
+      date: '2016-05-03',
+      name: '王小虎',
+      address: '上海市普陀区金沙江路 1518 弄'
+    }, {
+      date: '2016-05-02',
+      name: '王小虎',
+      address: '上海市普陀区金沙江路 1518 弄'
+    }, {
+      date: '2016-05-04',
+      name: '王小虎',
+      address: '上海市普陀区金沙江路 1518 弄'
+    }],
+    loading: true
+  },
+  
+})
+</script>
+</html>

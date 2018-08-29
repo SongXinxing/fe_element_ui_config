@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>弹框</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="../theme/index.css" />
+</head>
+<body>
+    <div id="tsc">
+      <el-row>
+        系统弹框(Message 与 MessageBox):
+        <el-button type="text" @click="openAlert(false)" >点击打开alert弹框(无取消按钮)</el-button>
+        <el-button type="text" @click="openAlert" >点击打开alert弹框</el-button>
+        <el-button type="text" @click="openConfirm('info')">点击打开确认弹框(info)</el-button>
+        <el-button type="text" @click="openConfirm('warning')">点击打开确认弹框(warning)</el-button>
+        <el-button type="text" @click="openConfirm('success')">点击打开确认弹框(success)</el-button>
+        <el-button type="text" @click="openConfirm('error')">点击打开确认弹框(error)</el-button>
+      </el-row>
+      <el-row>
+        自定义弹框(el-dialog):
+        <el-button type="text" @click="dialogVisible1 = true">点击打开 Dialog</el-button>
+        <el-button type="text" @click="dialogVisible2 = true">点击打开自定义header的 Dialog</el-button>
+        <el-dialog title="自定义弹框" :visible.sync="dialogVisible1" width="30%" :before-close="handleClose1">
+          <span>这是一段信息</span>
+          <span slot="footer" class="dialog-footer">
+            <el-button @click="dialogVisible1 = false">取 消</el-button>
+            <el-button type="primary" @click="dialogVisible1 = false">确 定</el-button>
+          </span>
+        </el-dialog>
+        <el-dialog :visible.sync="dialogVisible2" width="30%" :before-close="handleClose2">
+          <span slot='title' class="el-dialog__title">
+            <i class='el-icon-arrow-left'></i>
+            我是自定义的表头
+          </span>
+          <span>这是一段信息</span>
+          <span slot="footer" class="dialog-footer">
+            <el-button @click="dialogVisible2 = false">取 消</el-button>
+            <el-button type="primary" @click="dialogVisible2 = false">确 定</el-button>
+          </span>
+        </el-dialog> 
+      </el-row>
+
+      <p>ps: 使用自定义弹框时，如果需要自定义header，需要给title slot 添加 class="el-dialog__title" 以保证样式的正确</p>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.3.2/dist/vue.min.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+new Vue({
+  el: '#tsc',
+  data: {
+    dialogVisible1: false,
+    dialogVisible2: false,
+  },
+  methods: {
+    openAlert(showCancelBtn) {
+      this.$alert('这是一段内容', '标题名称', {
+          showCancelButton: showCancelBtn,
+          cancelButtonText: '取消',
+          confirmButtonText: '确定',
+          callback: action => {
+            this.$message({type: 'info', message: `action: ${ action }`});
+          }
+        });
+    },
+    openConfirm(type) {
+      let msg = {info: '您创建的用户姓名是：谭守超', warning:'此操作将永久删除该文件, 是否继续?', success: '操作成功！', error: '操作失败，请重新尝试！'}
+      this.$confirm(msg[type], '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: type
+      }).then(() => {
+        this.$message({type: 'success', message: '点击了确定!'});
+      }).catch(() => {
+        this.$message({type: 'info', message: '点击了取消'});
+      });
+    },
+    handleClose1(done) {
+      done();
+      this.$message('已经关闭');
+    },
+    handleClose2(done) {
+      done();
+      this.$message('已经关闭');
+    }
+  }
+})
+</script>
+</html>

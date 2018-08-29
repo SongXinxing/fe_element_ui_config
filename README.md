@@ -1,1 +1,3 @@
-根据项目要求修改element ui样式
+./bin/et -m
+./bin/et -w
+./bin/et

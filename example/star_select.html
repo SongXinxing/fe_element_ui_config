@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      .mar-t_20 {
+        margin-top: 20px;
+      }
+    </style>
+    <link rel="stylesheet" type="text/css" media="screen" href="../theme/index.css" />
+</head>
+<body>
+    <div id="app">
+
+        <div class="mar-t_20">下拉单选框</div>
+        <el-select v-model="value" clearable placeholder="请选择" class="hide-popper">
+          <el-option popper-class="no-arrow"  v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+          </el-option>
+        </el-select>
+
+        <div class="mar-t_20">下拉单选框(禁用)</div>
+        <el-select disabled v-model="value" clearable placeholder="请选择" class="hide-popper">
+          <el-option popper-class="no-arrow"  v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+          </el-option>
+        </el-select>
+
+        <div class="mar-t_20">下拉多选框</div>
+        <el-select collapse-tags v-model="value5" filterable multiple placeholder="请选择">
+          <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+          </el-option>
+        </el-select>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.3.2/dist/vue.min.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    options: [{
+      value: '选项1',
+      label: '黄金糕'
+    }, {
+      value: '选项2',
+      label: '双皮奶'
+    }, {
+      value: '选项3',
+      label: '蚵仔煎'
+    }, {
+      value: '选项4',
+      label: '龙须面'
+    }, {
+      value: '选项5',
+      label: '北京烤鸭'
+    }],
+    value5: [],
+    value11: [],
+    value: ''
+  },
+  
+})
+</script>
+</html>

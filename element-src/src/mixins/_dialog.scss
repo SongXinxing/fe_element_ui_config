@@ -1,0 +1,77 @@
+@import "../common/var";
+
+@mixin dialog() {
+  min-width: $--dialog-min-width;
+  font-size: $--font-size-base;
+  font-weight: $--font-weight-primary;
+  text-align: left;
+  background: $--background-color-light-1;
+  border-radius: $--dialog-border-radius;
+  box-shadow: $--dialog-box-shadow;
+}
+
+@mixin dialog-wrapper() {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+@mixin dialog-header() {
+  position: relative;
+}
+
+@mixin dialog-title() {
+  padding-left: 20px;
+  margin-bottom: 0;
+  color: $--color-text-primary;
+  font-size: $--font-size-small;
+  background: $--color-white;
+}
+
+@mixin dialog-headerbtn() {
+  position: absolute;
+  top: $--dialog-header-btn-pos;
+  right: $--dialog-header-btn-pos;
+  padding: 0;
+  border: none;
+  outline: none;
+  font-size: $--message-close-size;
+  background-color: transparent;
+  cursor: pointer;
+  .el-dialog__close {
+      color: $--color-info;
+  }
+  &:focus, &:hover {
+    .el-dialog__close {
+      color: $--color-primary;
+    }
+  }
+}
+
+@mixin dialog-footer() {
+  text-align: center;
+  display: flex;
+  background-color: $--color-white;
+}
+
+@mixin dialog-footer-btn {
+  flex: 1;
+  border: none;
+  background: none;
+  height: $--dialog-btn-height;
+  font-size: $--font-size-base;
+  &:hover, &:focus {
+    background: none;
+  }
+  &:first-child:not(:first-child) {
+      border-left: none;
+  }
+  &:last-child {
+    margin-left: 0;
+    color: $--color-primary-light-1;
+    border-left: $--border-base;
+    border-left-color: $--border-color-extra-light;
+  }
+}
